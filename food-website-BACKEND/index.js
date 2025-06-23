@@ -6,13 +6,14 @@ const PORT=5000;
 
 const app=express();
 app.use(cors());
-app.use(express.json());
-app.use(express.static('public'))
 
+app.use(express.static('public'))
+app.use(express.json({ limit: "20mb" }));
 const UserRouter =require('./routes/UserRoutes');
+const ProductRouter= require('./routes/ProductRouter');
 
 app.use('/user',UserRouter)
-
+app.use('/product',ProductRouter)
 mongoose.connect(
         "mongodb://localhost:27017/",
         {
@@ -21,9 +22,7 @@ mongoose.connect(
 ).then(
     ()=>{console.log("our db connected successfully");
         app.listen(PORT,()=>{console.log("Our server started on port "+PORT);
-
         })
-
         }
 
 ).catch(

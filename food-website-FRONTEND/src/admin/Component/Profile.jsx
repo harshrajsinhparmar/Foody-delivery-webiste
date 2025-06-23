@@ -12,8 +12,8 @@ const Profile = () => {
 
   useEffect(() => {
     // const id = localStorage.getItem("id");
-    const token = localStorage.getItem("userToken");
-
+    const token = localStorage.getItem("token");
+    const id = location.pathname.split("/")[2];
     // setId({ id: id, token: token });
     setToken(token);
   }, []);
@@ -21,7 +21,7 @@ const Profile = () => {
   useEffect(() => {
     if (id && token) {
       axios
-        .post(
+        .get(
           `http://localhost:5000/user/profile/${id}`,
           {},
           {
@@ -31,18 +31,20 @@ const Profile = () => {
         .then((success) => {
           if (success.data.status === 1) {
               console.log(id);
+              console.log(success);
             setUserDetails(success.data);
           }
         })
         .catch((error) => {
           console.log(id);
+          console.log("BHAI NAHI HUA KUCH")
           console.log(error);
         });
     } else if(token !== null) {
       axios
         .post(
           `http://localhost:5000/user/profile`,
-          {},
+          
           {
             headers: { Authorization: `Bearer ${token}` },
           }

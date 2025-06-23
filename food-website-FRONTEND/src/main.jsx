@@ -7,7 +7,9 @@ import './index.css';
 import App from './App.jsx'
 import Login from './admin/Component/Login.jsx';
 import Profile from './admin/Component/Profile.jsx';
-
+import DashboardLAYOUT from './admin/Dashboard/DashboardLAYOUT.jsx'
+import DashboardOverview from './admin/Dashboard/DashboardOverview.jsx'
+import Products from './admin/Dashboard/Products.jsx'
 
 const routes =createBrowserRouter([
   {
@@ -29,6 +31,19 @@ const routes =createBrowserRouter([
   {
     path:'profile/:id',
    element: <Profile/>,
+
+  },
+  {
+    path:"/dashboard/",
+    element:<DashboardLAYOUT/>,
+    children:[
+      {path:'',
+      element:<Products/>,
+      },
+      {path:'overview',
+      element:<DashboardOverview/>,
+      }
+    ]
 
   }
 ])

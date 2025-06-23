@@ -1,6 +1,6 @@
 const Crypt =require('cryptr');
 const cryptr= new Crypt("premjatol@email.com");
-const secretKey="premjatol@email.com"
+const secretKey="YOUR_SECRET_KEY"
 const jwt= require('jsonwebtoken');
 
 const encryptPassword=(password)=>{
